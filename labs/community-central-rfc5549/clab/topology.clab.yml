@@ -1,0 +1,41 @@
+---
+name: arista-rfc5549
+
+prefix: ""
+
+mgmt:
+  network: mgmt
+  ipv4-subnet: 172.100.100.0/24
+
+topology:
+
+  defaults:
+    env:
+      INTFTYPE: et
+
+  kinds:
+    ceos:
+      image: arista/ceos:latest
+
+  nodes:
+    sw1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.105
+      startup-config: init-configs/sw1.cfg
+      labels:
+        graph-level: 4
+        graph-icon: switch
+
+    sw2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.106
+      startup-config: init-configs/sw2.cfg
+      labels:
+        graph-level: 4
+        graph-icon: switch
+
+
+
+  links:
+    - endpoints: ["sw1:et1", "sw2:et1"]
+
