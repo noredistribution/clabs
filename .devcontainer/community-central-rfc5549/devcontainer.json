@@ -20,6 +20,6 @@
     },
     "postCreateCommand": "postCreate.sh; make start; make inspect",
     "workspaceMount": "source=${localWorkspaceFolder}/labs/${containerWorkspaceFolder},target=/${containerWorkspaceFolder},type=bind",
-    "workspaceFolder": "/rfc5549_demo",
+    "workspaceFolder": "/community-central-rfc5549",
     "containerUser": "avd"
 }
