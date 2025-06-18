@@ -20,6 +20,7 @@
     },
     "postCreateCommand": "postCreate.sh; make start; make inspect",
     "workspaceMount": "source=${localWorkspaceFolder}/labs/${containerWorkspaceFolder},target=/${containerWorkspaceFolder},type=bind",
+    "onCreateCommand": "chmod +x /community-central-rfc5549/addAliases.sh; /community-central-rfc5549/addAliases.sh",
     "workspaceFolder": "/community-central-rfc5549",
     "containerUser": "avd"
 }
