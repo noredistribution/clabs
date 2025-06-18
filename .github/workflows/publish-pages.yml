@@ -6,10 +6,8 @@ on:
   push:
     branches: [ main ]
     paths:
-    - slides/**
     - docs/**
     - mkdocs.yml
-    - img/**
     - .github/workflows/publish-pages.yml
     # also trigger if lab archives changed
     - labs/**
@@ -50,10 +48,9 @@ jobs:
           mkdocs build
       - name: Build Directories and Copy images 🖼️
         run: |
-          mkdir site/slides \
-          && mkdir site/slides/assets \
-          && mkdir site/pdfs \
-          && cp -R slides/assets/img site/slides/assets/img
+          mkdir -p site/slides \
+          && mkdir -p site/slides/assets
+
 
       - name: Add lab archive for local download
         run: |
