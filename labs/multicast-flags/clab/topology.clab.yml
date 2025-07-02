@@ -16,7 +16,8 @@ topology:
   kinds:
     arista_ceos:
       image: arista/ceos:latest
-
+    linux:
+      image: ghcr.io/srl-labs/network-multitool
   nodes:
     sw1:
       kind: arista_ceos
@@ -42,6 +43,12 @@ topology:
       kind: arista_ceos
       mgmt-ipv4: 172.100.100.211
       startup-config: init-configs/rcvr.cfg
+    telegraf:
+      kind: linux
+      image: telegraf:latest
+      mgmt-ipv4: 172.100.100.212
+      binds:
+        - init-configs/telegraf.conf:/etc/telegraf/telegraf.conf:ro
 
 
 
