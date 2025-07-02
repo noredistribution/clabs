@@ -1,0 +1,56 @@
+---
+name: mc-flags
+
+prefix: ""
+
+mgmt:
+  network: mgmt
+  ipv4-subnet: 172.100.100.0/24
+
+topology:
+
+  defaults:
+    env:
+      INTFTYPE: et
+
+  kinds:
+    arista_ceos:
+      image: arista/ceos:latest
+
+  nodes:
+    sw1:
+      kind: arista_ceos
+      mgmt-ipv4: 172.100.100.105
+      startup-config: init-configs/sw1.cfg
+    sw2:
+      kind: arista_ceos
+      mgmt-ipv4: 172.100.100.106
+      startup-config: init-configs/sw2.cfg
+    sw3:
+      kind: arista_ceos
+      mgmt-ipv4: 172.100.100.107
+      startup-config: init-configs/sw3.cfg
+    sw4:
+      kind: arista_ceos
+      mgmt-ipv4: 172.100.100.108
+      startup-config: init-configs/sw4.cfg
+    src:
+      kind: arista_ceos
+      mgmt-ipv4: 172.100.100.210
+      startup-config: init-configs/src.cfg
+    rcvr:
+      kind: arista_ceos
+      mgmt-ipv4: 172.100.100.211
+      startup-config: init-configs/rcvr.cfg
+
+
+
+  links:
+    - endpoints: ["sw1:et1", "rcvr:et1"]
+    - endpoints: ["sw1:et3", "sw2:et3"]
+    - endpoints: ["sw1:et2", "sw2:et2"]
+    - endpoints: ["sw2:et4", "sw3:et4"]
+    - endpoints: ["sw2:et5", "sw3:et5"]
+    - endpoints: ["sw3:et2", "sw4:et2"]
+    - endpoints: ["sw3:et3", "sw4:et3"]
+    - endpoints: ["sw4:et1", "src:et1"]
